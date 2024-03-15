@@ -8,7 +8,8 @@ eea.api.controlpanel
   :target: https://ci.eionet.europa.eu/job/eea/job/eea.api.controlpanel/job/master/display/redirect
   :alt: Master
 
-The eea.api.controlpanel is a Plone add-on
+The eea.api.controlpanel is a Plone add-on to be used together
+with `volto-controlpanel <https://github.com/eea/volto-controlpanel>`_ Volto add-on
 
 .. contents::
 
@@ -17,14 +18,19 @@ Main features
 =============
 
 1. Easy to install/uninstall via Site Setup > Add-ons
-2.
-3.
+2. RestAPI for controlpanel versions details
+
+
+Environment variables
+=====================
+
+- `BACKEND_VERSION` - Backend version to be saved to registry when Plone instance starts. You should update this environment variable every time you deploy a new version of your backend. 
+
 
 Install
 =======
 
-* Add eea.api.controlpanel to your eggs section in your buildout and
-  re-run buildout::
+* Add eea.api.controlpanel to your eggs section in your buildout and re-run buildout::
 
     [buildout]
     eggs +=
@@ -32,16 +38,29 @@ Install
 
 * Or via docker::
 
-    $ docker run --rm -p 8080:8080 -e ADDONS="eea.api.controlpanel" plone
+    $ docker compose up plone6
+
+* Or via pip::
+
+    $ pip install eea.api.controlpanel
 
 * Install *eea.api.controlpanel* within Site Setup > Add-ons
+
+
+Develop
+=======
+::
+
+    $ git clone https://github.com/eea/eea.api.controlpanel.git
+    $ cd eea.api.controlpanel
+    $ git checkout develop
+    $ make help
 
 
 Source code
 ===========
 
-- `Plone 4+ on github <https://github.com/eea/eea.api.controlpanel>`_
-- `Plone 5+ on github <https://github.com/eea/eea.api.controlpanel>`_
+- `Github <https://github.com/eea/eea.api.controlpanel>`_
 
 
 Eggs repository
@@ -53,7 +72,7 @@ Eggs repository
 
 Plone versions
 ==============
-It has been developed and tested for Plone 4 and 5. See buildouts section above.
+It has been developed and tested for Plone 5 and 6. It should work on any Plone version that supports Volto.
 
 
 How to contribute
