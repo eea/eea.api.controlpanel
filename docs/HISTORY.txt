@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0-dev0 - (unreleased)
+1.0 - (2024-03-15)
 -----------------------
 
-* Initial release.
-  [eea]
+* Moved Version RestAPI endpoint and init logic from eea.kitkat
+  [avoinea - refs #264531]
