@@ -1,8 +1,12 @@
 Changelog
 =========
 
-1.1-dev0 - (unreleased)
+1.1 - (2025-06-03)
 ---------------------------
+* Fix: setSite with do_initialize in order to avoid failing when using with collective.regenv
+  [avoinea - refs #270766]
+* Change: Call initialize method with a subscriber on IProcessStarting
+  [avoinea - refs #270766]
 
 1.0 - (2024-03-15)
 -----------------------

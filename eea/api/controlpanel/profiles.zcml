@@ -5,6 +5,10 @@
     i18n_domain="eea">
 
   <five:registerPackage package="." initialize=".initialize" />
+  <subscriber
+      for="zope.processlifetime.IProcessStarting"
+      handler=".do_initialize"
+      />
 
   <genericsetup:registerProfile
       name="default"
