@@ -6,6 +6,7 @@ from datetime import datetime
 import transaction
 import Zope2
 from zope.i18nmessageid.message import MessageFactory
+from zope.component.hooks import setSite
 
 logger = logging.getLogger('eea')
 EEAMessageFactory = MessageFactory('eea')
@@ -17,7 +18,13 @@ version_env = "BACKEND_VERSION"
 
 
 def initialize(context):
-    """Initializer called when used as a Zope 2 product.
+    """ Initializer called when used as a Zope 2 product.
+    """
+    return
+
+
+def do_initialize(event):
+    """ Initializer registered with subscriber
     """
     root = Zope2.app()
     sites = root.objectValues("Plone Site")
@@ -28,6 +35,7 @@ def initialize(context):
 
     changed = False
     for site in sites:
+        setSite(site)
         if not hasattr(site, "portal_registry"):
             continue
 
