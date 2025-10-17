@@ -12,7 +12,6 @@ class SystemGet(PloneSystemGet):
     """
     def eggs(self):
         """ Eggs """
-        # pylint: disable=not-an-iterable
         for pkg in pkg_resources.working_set:
             yield (pkg.key, pkg.version)
 
