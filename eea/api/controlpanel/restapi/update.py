@@ -1,5 +1,5 @@
-""" @system POST
-"""
+"""@system POST"""
+
 import json
 import logging
 
@@ -15,36 +15,30 @@ versionRecord = "eea.api.controlpanel.interfaces.IEEAVersionsFrontend.version"
 
 
 class SystemUpdate(Service):
-    """ @system POST
-    """
+    """@system POST"""
+
     def reply(self):
-        """ Reply """
+        """Reply"""
         records = json.loads(self.request.get("BODY", "{}"))
 
         # As we can't restrict this endpoint via permissions
         # Thus, restrict access only to internal API
         url = self.context.absolute_url()
-        if not (url.startswith('http://localhost') or
-                url.startswith('http://backend')):
-
-            logger.warning("DENIED public API PATCH: %s/@system - %s",
-                           url, records)
+        if not (url.startswith("http://localhost") or url.startswith("http://backend")):
+            logger.warning("DENIED public API PATCH: %s/@system - %s", url, records)
             return self.reply_no_content()
 
         registry = getUtility(IRegistry)
 
         if versionRecord not in registry:
             logger.warning(
-                "eea.api.controlpanel not installed/upgraded: %s - %s",
-                url, records)
+                "eea.api.controlpanel not installed/upgraded: %s - %s", url, records
+            )
             return self.reply_no_content()
 
         # Disable CSRF protection
         if "IDisableCSRFProtection" in dir(plone.protect.interfaces):
-            alsoProvides(
-                self.request,
-                plone.protect.interfaces.IDisableCSRFProtection
-            )
+            alsoProvides(self.request, plone.protect.interfaces.IDisableCSRFProtection)
 
         for key, value in records.items():
             if key != versionRecord:

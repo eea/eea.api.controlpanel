@@ -1,4 +1,5 @@
-""" Get @system info """
+"""Get @system info"""
+
 import pkg_resources
 from plone.api.portal import get_registry_record
 from plone.restapi.serializer.converters import json_compatible
@@ -8,37 +9,35 @@ from eea.api.controlpanel.interfaces import IEEAVersionsFrontend
 
 
 class SystemGet(PloneSystemGet):
-    """ @system endpoint
-    """
+    """@system endpoint"""
+
     def eggs(self):
-        """ Eggs """
+        """Eggs"""
         for pkg in pkg_resources.working_set:
             yield (pkg.key, pkg.version)
 
     def frontend(self):
-        """ Frontend info """
+        """Frontend info"""
         return {
-            "version": get_registry_record(
-                "version", interface=IEEAVersionsFrontend),
+            "version": get_registry_record("version", interface=IEEAVersionsFrontend),
             "old_version": get_registry_record(
-                "old_version", interface=IEEAVersionsFrontend),
-            "date": get_registry_record(
-                "date", interface=IEEAVersionsFrontend),
+                "old_version", interface=IEEAVersionsFrontend
+            ),
+            "date": get_registry_record("date", interface=IEEAVersionsFrontend),
         }
 
     def backend(self):
-        """ Backend info """
+        """Backend info"""
         return {
-            "version": get_registry_record(
-                "version", interface=IEEAVersionsBackend),
+            "version": get_registry_record("version", interface=IEEAVersionsBackend),
             "old_version": get_registry_record(
-                "old_version", interface=IEEAVersionsBackend),
-            "date": get_registry_record(
-                "date", interface=IEEAVersionsBackend),
+                "old_version", interface=IEEAVersionsBackend
+            ),
+            "date": get_registry_record("date", interface=IEEAVersionsBackend),
         }
 
     def reply(self):
-        """ Reply """
+        """Reply"""
         res = super().reply()
         if "eggs" not in res:
             res["eggs"] = dict(self.eggs())
