@@ -11,44 +11,44 @@ class IEeaApiControlpanelLayer(IDefaultBrowserLayer):
 
 
 class IEEAVersionsBackend(Interface):
-    """ Registry record for the backend versions
-    """
+    """Registry record for the backend versions"""
+
     date = schema.Datetime(
         title=_("Date of last version update"),
         description=("The date when the version was last updated"),
-        required=True
+        required=True,
     )
 
     version = schema.Text(
         title=_("Current version"),
         description=("The latest version that exists"),
-        required=True
+        required=True,
     )
 
     old_version = schema.Text(
         title=_("Previous version"),
         description=("The version that was previously"),
-        required=False
+        required=False,
     )
 
 
 class IEEAVersionsFrontend(Interface):
-    """ Registry record for the frontend versions
-    """
+    """Registry record for the frontend versions"""
+
     date = schema.Datetime(
         title=_("Date of last version update"),
         description=("The date when the version was last updated"),
-        required=True
+        required=True,
     )
 
     version = schema.Text(
         title=_("Current version"),
         description=("The latest version that exists"),
-        required=True
+        required=True,
     )
 
     old_version = schema.Text(
         title=_("Previous version"),
         description=("The version that was previously"),
-        required=False
+        required=False,
     )
