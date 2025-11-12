@@ -1,5 +1,5 @@
-""" Main product initializer
-"""
+"""Main product initializer"""
+
 import os
 import logging
 from datetime import datetime
@@ -8,8 +8,8 @@ import Zope2
 from zope.i18nmessageid.message import MessageFactory
 from zope.component.hooks import setSite
 
-logger = logging.getLogger('eea')
-EEAMessageFactory = MessageFactory('eea')
+logger = logging.getLogger("eea")
+EEAMessageFactory = MessageFactory("eea")
 
 version_record = "eea.api.controlpanel.interfaces.IEEAVersionsBackend.version"
 old_version = "eea.api.controlpanel.interfaces.IEEAVersionsBackend.old_version"
@@ -18,14 +18,12 @@ version_env = "BACKEND_VERSION"
 
 
 def initialize(context):
-    """ Initializer called when used as a Zope 2 product.
-    """
+    """Initializer called when used as a Zope 2 product."""
     return
 
 
 def do_initialize(event):
-    """ Initializer registered with subscriber
-    """
+    """Initializer registered with subscriber"""
     root = Zope2.app()
     sites = root.objectValues("Plone Site")
     version = os.environ.get(version_env, "")
@@ -54,12 +52,11 @@ def do_initialize(event):
             changed = True
 
     if changed:
-        transaction.get().note('eea.api.controlpanel: update BACKEND_VERSION')
+        transaction.get().note("eea.api.controlpanel: update BACKEND_VERSION")
         try:
             transaction.commit()
         except Exception as err:
-            logger.warning(
-                "BACKEND_VERSION already updated elsewhere: %s", err)
+            logger.warning("BACKEND_VERSION already updated elsewhere: %s", err)
             transaction.abort()
         else:
             logger.info("BACKEND_VERSION updated to: %s", version)

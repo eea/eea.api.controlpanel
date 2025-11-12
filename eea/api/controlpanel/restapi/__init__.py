@@ -1,2 +1,1 @@
-""" Rest API for EEA API Control Panel
-"""
+"""Rest API for EEA API Control Panel"""
