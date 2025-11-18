@@ -59,7 +59,7 @@ clean:			## Cleanup environment
 .PHONY: bootstrap
 bootstrap:		## Bootstrap python environment
 	$(PYTHON) -m venv .
-	bin/pip install --upgrade pip mxdev black
+	bin/pip install --upgrade pip mxdev ruff
 
 .PHONY: install
 install:		## Install Plone
