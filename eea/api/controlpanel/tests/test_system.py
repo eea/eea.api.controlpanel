@@ -3,7 +3,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
 
-import pkg_resources
 
 from eea.api.controlpanel.restapi.get import SystemGet
 from eea.api.controlpanel.interfaces import IEEAVersionsBackend, IEEAVersionsFrontend
